@@ -1,0 +1,9 @@
+{
+  "short_name": "COLAVO SALON",
+  "name": "Colavo Salon React Test__CHOI BANG SIL",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
