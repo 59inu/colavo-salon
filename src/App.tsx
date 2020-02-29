@@ -107,7 +107,12 @@ class App extends React.Component<{}, IState> {
             delItem={delItem}
             delDiscount={delDiscount}
           />
-          <Cart cart={cart} delItem={delItem} delDiscount={delDiscount} />
+          <Cart
+            cart={cart}
+            setCart={setCart}
+            delItem={delItem}
+            delDiscount={delDiscount}
+          />
         </main>
       </div>
     );
