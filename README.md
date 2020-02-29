@@ -2,7 +2,7 @@
 
 ---
 
-A simple CRM Application for beauty salons with two sections of Selector and Cart!
+Simple CRM app for a beauty salon consisting of two sections, Selector and Cart!
 
 ### Quickstart
 
