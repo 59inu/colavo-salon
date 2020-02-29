@@ -1,15 +1,17 @@
 import React from "react";
 import DiscountList from "../renderList/cart/DiscountList";
 import ItemList from "../renderList/cart/ItemList";
-import { CartData, DelItem, DelDiscount } from "../../types/index";
+import TotalPrice from "../TotalPrice";
+import { CartData, SetItem, SetDiscount } from "../../types/index";
 import { Divider } from "antd";
 
 interface Iprops {
   cart: CartData;
-  delItem: DelItem;
-  delDiscount: DelDiscount;
+  setCart: (newCart: CartData) => void;
+  delItem: SetItem;
+  delDiscount: SetDiscount;
 }
-export default function Cart({ cart, delItem, delDiscount }: Iprops) {
+export default function Cart({ cart, setCart, delItem, delDiscount }: Iprops) {
   const { items, discounts } = cart;
 
   const totalItemsPrice = Object.keys(items).reduce(
@@ -52,19 +54,26 @@ export default function Cart({ cart, delItem, delDiscount }: Iprops) {
     return (totalItemsPrice - totalDiscounts).toLocaleString();
   };
 
+  const getLocalePrice = (price: number | string) => price.toLocaleString();
+
   return (
     <section className="cart__container">
       BILL
       <Divider />
-      <ItemList items={items} cart={cart} delItem={delItem} />
+      <ItemList items={items} setCart={setCart} cart={cart} delItem={delItem} />
       <Divider />
       <DiscountList
         discounts={discounts}
+        setCart={setCart}
         cart={cart}
         delDiscount={delDiscount}
       />
       <Divider />
-      <TotalPrice totalPrice={getTotalPrice()} />
+      <TotalPrice
+        totalPrice={getLocalePrice(getTotalPrice())}
+        totalItemsPrice={getLocalePrice(totalItemsPrice)}
+        totalDiscountsPrice={getLocalePrice(totalDiscounts)}
+      />
     </section>
   );
 }
