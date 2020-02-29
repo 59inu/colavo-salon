@@ -57,10 +57,24 @@ class App extends React.Component<{}, IState> {
     const itemKey = Object.keys(item)[0];
     const newDiscounts = { ...cart.discounts };
 
+    //삭제하려는 아이템을 지정한 할인 정보가 있는지 체크하여, 있을 경우 할인 정보 삭제
+    for (let discountKey in newDiscounts) {
+      const discountTarget = newDiscounts[discountKey].target;
+      const targets = discountTarget ? discountTarget : [];
+      if (targets.indexOf(itemKey) > -1) {
+        const itemName = this.state.data.items[itemKey].name;
+        const discountName = this.state.data.discounts[discountKey].name;
+        message.config({ duration: 4 });
+        message.info(
+          `'${itemName}'이(가) 포함된 할인 '${discountName}'이(가) 삭제됩니다.`
+        );
+        delete newDiscounts[discountKey];
+      }
+    }
     const newItems = { ...cart.items };
     delete newItems[itemKey];
     const newCart = { discounts: newDiscounts, items: newItems };
-    this.setState({ cart: newCart });
+    this.setCart(newCart);
   }
 
   delDiscount(discount: Discount) {
