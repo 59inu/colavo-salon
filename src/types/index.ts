@@ -23,3 +23,4 @@ export interface CartData {
   items: Item;
   discounts: Discount;
 }
+export type ModeType = "items" | "discounts";
