@@ -22,6 +22,10 @@ class App extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    console.log(
+      "W  E  L  C  O  M  E\n\n  T  O\n\n    C  O  L  A  V  O\n\n      G  R  O  U  N  D!"
+    );
+
     const { data } = this.state;
     const apiUrl =
       "https://us-central1-colavolab.cloudfunctions.net/requestAssignmentCalculatorData";
