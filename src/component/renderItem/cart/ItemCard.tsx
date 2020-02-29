@@ -1,5 +1,5 @@
 import React from "react";
-import DeleteIcon from "./DeleteIBtn";
+import DeleteIBtn from "./DeleteIBtn";
 import { Item, SetItem, ChangeAmount } from "../../../types";
 import { InputNumber } from "antd";
 
@@ -34,7 +34,7 @@ export default function ItemCart({ item, delCart, changeAmount }: IProps) {
             defaultValue={1}
             onChange={handelonChange}
           />
-          <DeleteIcon item={item} delItem={delCart} />
+          <DeleteIBtn item={item} delItem={delCart} />
         </div>
       </div>
     </li>
