@@ -1,4 +1,5 @@
 import React from "react";
+import SelectorModeBtn from "../buttons/SelectorModeBtn";
 import ItemList from "../renderList/selector/ItemList";
 import DiscountList from "../renderList/selector/DiscountList";
 import {
@@ -9,6 +10,7 @@ import {
   SetItem,
   SetDiscount
 } from "../../types";
+
 interface IProps {
   readonly data: Data;
   readonly cart: CartData;
