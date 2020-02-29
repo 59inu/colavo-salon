@@ -32,7 +32,7 @@ class Selector extends React.Component<IProps, IState> {
   }
 
   changeMode(e: any) {
-    this.setState({ mode: e.target });
+    this.setState({ mode: e.target.id });
   }
 
   render() {
