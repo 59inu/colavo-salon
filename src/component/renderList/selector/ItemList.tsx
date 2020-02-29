@@ -1,6 +1,6 @@
 import React from "react";
 import { Item } from "../../../types";
-import ItemCard from "../../renderItems/selector/ItemCard";
+import ItemCard from "../../renderItem/selector/ItemCard";
 
 interface IProps {
   items: Item;

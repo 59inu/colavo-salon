@@ -1,6 +1,6 @@
 import React from "react";
 import { Item, CartData, DelItem } from "../../../types";
-import ItemCard from "../../renderItems/cart/ItemCard";
+import ItemCard from "../../renderItem/cart/ItemCard";
 
 interface IProps {
   items: Item;

@@ -1,5 +1,5 @@
 import React from "react";
-import DiscountCard from "../../renderItems/selector/DiscountCard";
+import DiscountCard from "../../renderItem/selector/DiscountCard";
 import { Discount } from "../../../types";
 
 interface IProps {
