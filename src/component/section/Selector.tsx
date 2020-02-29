@@ -54,6 +54,7 @@ class Selector extends React.Component<IProps, IState> {
           <DiscountList
             discounts={discounts}
             cart={cart}
+            setCart={setCart}
             delDiscount={delDiscount}
           />
         )}
