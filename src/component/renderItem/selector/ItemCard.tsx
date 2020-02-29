@@ -1,11 +1,12 @@
 import * as React from "react";
 import CheckIcon from "../../buttons/CheckIcon";
-import { Item, CartData } from "../../../types";
+import { Item, SetItem, CartData } from "../../../types";
 
 interface ItemProps {
   cart: CartData;
   item: Item;
-  addCart: any;
+  addCart: SetItem;
+  delItem: SetItem;
 }
 export default function ItemCard({ cart, item, addCart }: ItemProps) {
   const itemKey = Object.keys(item)[0];

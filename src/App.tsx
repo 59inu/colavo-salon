@@ -59,6 +59,7 @@ class App extends React.Component<{}, IState> {
     const newCart = { ...cart, discounts: currentDC };
     this.setState({ cart: newCart });
   }
+
   setCart(newCart: CartData) {
     this.setState({ cart: newCart });
   }
