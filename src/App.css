@@ -164,15 +164,17 @@ section:first-child {
 .cart-discount-card__title > div:first-child > div:first-child {
   display: flex;
   font-weight: 500;
-  margin-right: 10px;
+  margin-right: 5px;
+  justify-content: center;
 }
 .cart-discount-card__title > div:first-child > div:nth-child(2) {
   display: flex;
   min-width: 70px;
+  margin-right: 20px;
   flex: 1;
   font-size: 12px;
   color: rgb(148, 136, 233);
-  align-items: flex-end;
+  align-items: center;
 }
 .cart-discount-card__contianer {
   flex: 1;
@@ -206,6 +208,9 @@ section:first-child {
 }
 .cart__part-price {
   flex: 1;
+  border-left: 1px solid rgb(238, 238, 238);
+  padding-left: 10px;
+  font-weight: 300;
 }
 .cart__part-price > div {
   flex: 1;
