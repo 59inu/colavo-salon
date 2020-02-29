@@ -1,14 +1,15 @@
 import React from "react";
 import DiscountList from "../renderList/cart/DiscountList";
 import ItemList from "../renderList/cart/ItemList";
-import { CartData, DelItem } from "../../types/index";
+import { CartData, DelItem, DelDiscount } from "../../types/index";
 import { Divider } from "antd";
 
 interface Iprops {
   cart: CartData;
   delItem: DelItem;
+  delDiscount: DelDiscount;
 }
-export default function Cart({ cart }: Iprops) {
+export default function Cart({ cart, delItem, delDiscount }: Iprops) {
   const { items, discounts } = cart;
 
   const totalItemsPrice = Object.keys(items).reduce(
@@ -55,9 +56,13 @@ export default function Cart({ cart }: Iprops) {
     <section className="cart__container">
       BILL
       <Divider />
-      <ItemList items={items} cart={cart} />
+      <ItemList items={items} cart={cart} delItem={delItem} />
       <Divider />
-      <DiscountList discounts={discounts} cart={cart} />
+      <DiscountList
+        discounts={discounts}
+        cart={cart}
+        delDiscount={delDiscount}
+      />
       <Divider />
       <TotalPrice totalPrice={getTotalPrice()} />
     </section>

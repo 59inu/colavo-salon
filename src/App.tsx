@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Selector from "./component/section/Selector";
 import Cart from "./component/section/Cart";
-import { Data, CartData, Item } from "./types";
+import { Data, CartData, Item, Discount } from "./types";
 
 interface IState {
   data: Data;
@@ -15,6 +15,8 @@ class App extends React.Component<{}, IState> {
       data: { items: {}, discounts: {}, currency_code: "" },
       cart: { items: {}, discounts: {} }
     };
+    this.delItem = this.delItem.bind(this);
+    this.delDiscount = this.delDiscount.bind(this);
   }
 
   componentDidMount() {
@@ -48,14 +50,29 @@ class App extends React.Component<{}, IState> {
     const newCart = { discounts: newDiscounts, items: newItems };
     this.setState({ cart: newCart });
   }
+  delDiscount(discount: Discount) {
+    const { cart } = this.state;
+    const key = Object.keys(discount)[0];
+    const currentDC = { ...cart.discounts };
+    delete currentDC[key];
+    const newCart = { ...cart, discounts: currentDC };
+    this.setState({ cart: newCart });
+  }
 
   render() {
+    const { delDiscount, delItem } = this;
+
     const { data, cart } = this.state;
     return (
       <div className="App">
         <main>
-          <Selector data={data} cart={cart} />
-          <Cart cart={cart} delItem={delItem} />
+          <Selector
+            data={data}
+            cart={cart}
+            delItem={delItem}
+            delDiscount={delDiscount}
+          />
+          <Cart cart={cart} delItem={delItem} delDiscount={delDiscount} />
         </main>
       </div>
     );
