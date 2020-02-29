@@ -28,3 +28,4 @@ export type ModeType = "items" | "discounts";
 export type SetCart = (newCart: CartData) => void;
 export type SetItem = (item: Item) => void;
 export type SetDiscount = (discount: Discount) => void;
+export type ChangeAmount = (val: number | undefined, item: Item) => void;
