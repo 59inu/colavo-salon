@@ -24,3 +24,5 @@ export interface CartData {
   discounts: Discount;
 }
 export type ModeType = "items" | "discounts";
+
+export type DelItem = (item: Item) => void;

@@ -1,11 +1,12 @@
 import React from "react";
 import DiscountList from "../renderList/cart/DiscountList";
 import ItemList from "../renderList/cart/ItemList";
-import { CartData } from "../../types/index";
+import { CartData, DelItem } from "../../types/index";
 import { Divider } from "antd";
 
 interface Iprops {
   cart: CartData;
+  delItem: DelItem;
 }
 export default function Cart({ cart }: Iprops) {
   const { items, discounts } = cart;

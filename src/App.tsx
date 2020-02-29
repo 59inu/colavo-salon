@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Selector from "./component/section/Selector";
 import Cart from "./component/section/Cart";
-import { Data, CartData } from "./types";
+import { Data, CartData, Item } from "./types";
 
 interface IState {
   data: Data;
@@ -38,6 +38,16 @@ class App extends React.Component<{}, IState> {
         //에러핸들링
       });
   }
+  delItem(item: Item) {
+    const { cart } = this.state;
+    const itemKey = Object.keys(item)[0];
+    const newDiscounts = { ...cart.discounts };
+
+    const newItems = { ...cart.items };
+    delete newItems[itemKey];
+    const newCart = { discounts: newDiscounts, items: newItems };
+    this.setState({ cart: newCart });
+  }
 
   render() {
     const { data, cart } = this.state;
@@ -45,7 +55,7 @@ class App extends React.Component<{}, IState> {
       <div className="App">
         <main>
           <Selector data={data} cart={cart} />
-          <Cart cart={cart} />
+          <Cart cart={cart} delItem={delItem} />
         </main>
       </div>
     );
