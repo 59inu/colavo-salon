@@ -1,5 +1,5 @@
 import React from "react";
-import DeleteIcon from "./DeleteIcon";
+import DeleteIcon from "./DeleteIBtn";
 import { Item, SetItem, ChangeAmount } from "../../../types";
 import { InputNumber } from "antd";
 
@@ -12,7 +12,7 @@ interface IProps {
 export default function ItemCart({ item, delCart, changeAmount }: IProps) {
   const key = Object.keys(item)[0];
   const { price, name, count } = item[key];
-  const localePrice = price.toLocaleString();
+  const itemPrice = price.toLocaleString();
   const totalPrice = (price * count).toLocaleString();
   const handelonChange = (value: number | undefined) => {
     changeAmount(value, item);
@@ -23,7 +23,7 @@ export default function ItemCart({ item, delCart, changeAmount }: IProps) {
         <div className="cart-discount-card__title">
           <div>
             <div>{name}</div>
-            <div>(₩ {localePrice})</div>
+            <div>(₩ {itemPrice})</div>
           </div>
           <div>₩ {totalPrice}</div>
         </div>

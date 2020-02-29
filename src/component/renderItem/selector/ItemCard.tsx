@@ -11,7 +11,7 @@ interface ItemProps {
 export default function ItemCard({ cart, item, addCart }: ItemProps) {
   const itemKey = Object.keys(item)[0];
   const { name, price } = item[itemKey];
-  const localePrice = Number(price).toLocaleString();
+  const itemPrice = Number(price).toLocaleString();
   const handleClick = () => {
     if (addCart) {
       addCart(item);
@@ -23,7 +23,7 @@ export default function ItemCard({ cart, item, addCart }: ItemProps) {
       <div className="selector__render-item-container" onClick={handleClick}>
         <div className="selector__render-item-section left">
           <div>{name}</div>
-          <div>₩ {localePrice}</div>
+          <div>₩ {itemPrice}</div>
         </div>
         <div className="selector__render-item-section right">
           <CheckIcon checked={isChecked()} />
