@@ -3,6 +3,7 @@ import "./App.css";
 import Selector from "./component/section/Selector";
 import Cart from "./component/section/Cart";
 import { Data, CartData, Item, Discount } from "./types";
+import { message } from "antd";
 
 interface IState {
   data: Data;
@@ -38,9 +39,19 @@ class App extends React.Component<{}, IState> {
         }
       })
       .catch(error => {
-        //에러핸들링
+        const vh = Math.max(
+          document.documentElement.clientHeight,
+          window.innerHeight || 0
+        );
+        message.config({
+          top: vh * 0.4
+        });
+        message.warning(
+          "데이터를 불러오지 못했습니다.\n 오류가 계속되면 관리자에게 문의해주세요."
+        );
       });
   }
+
   delItem(item: Item) {
     const { cart } = this.state;
     const itemKey = Object.keys(item)[0];
@@ -51,6 +62,7 @@ class App extends React.Component<{}, IState> {
     const newCart = { discounts: newDiscounts, items: newItems };
     this.setState({ cart: newCart });
   }
+
   delDiscount(discount: Discount) {
     const { cart } = this.state;
     const key = Object.keys(discount)[0];
