@@ -1,13 +1,20 @@
 import React from "react";
 import ItemList from "../renderList/selector/ItemList";
 import DiscountList from "../renderList/selector/DiscountList";
-import { Data, CartData, ModeType, DelItem, DelDiscount } from "../../types";
-
+import {
+  Data,
+  CartData,
+  SetCart,
+  ModeType,
+  SetItem,
+  SetDiscount
+} from "../../types";
 interface IProps {
   readonly data: Data;
   readonly cart: CartData;
-  delItem: DelItem;
-  delDiscount: DelDiscount;
+  setCart: SetCart;
+  delItem: SetItem;
+  delDiscount: SetDiscount;
 }
 interface IState {
   mode: ModeType;
@@ -30,12 +37,17 @@ class Selector extends React.Component<IProps, IState> {
     const { mode } = this.state;
     const { changeMode } = this;
     const { items, discounts } = this.props.data;
-    const { cart, delItem, delDiscount } = this.props;
+    const { cart, delItem, delDiscount, setCart } = this.props;
     return (
       <section>
         <SelectorModeBtn handleClick={changeMode} />
         {mode === "items" ? (
-          <ItemList items={items} cart={cart} delItem={delItem} />
+          <ItemList
+            items={items}
+            cart={cart}
+            setCart={setCart}
+            delItem={delItem}
+          />
         ) : (
           <DiscountList
             discounts={discounts}

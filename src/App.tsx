@@ -15,6 +15,7 @@ class App extends React.Component<{}, IState> {
       data: { items: {}, discounts: {}, currency_code: "" },
       cart: { items: {}, discounts: {} }
     };
+    this.setCart = this.setCart.bind(this);
     this.delItem = this.delItem.bind(this);
     this.delDiscount = this.delDiscount.bind(this);
   }
@@ -58,10 +59,12 @@ class App extends React.Component<{}, IState> {
     const newCart = { ...cart, discounts: currentDC };
     this.setState({ cart: newCart });
   }
+  setCart(newCart: CartData) {
+    this.setState({ cart: newCart });
+  }
 
   render() {
-    const { delDiscount, delItem } = this;
-
+    const { setCart, delDiscount, delItem } = this;
     const { data, cart } = this.state;
     return (
       <div className="App">
@@ -69,6 +72,7 @@ class App extends React.Component<{}, IState> {
           <Selector
             data={data}
             cart={cart}
+            setCart={setCart}
             delItem={delItem}
             delDiscount={delDiscount}
           />
