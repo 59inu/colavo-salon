@@ -10,13 +10,23 @@ interface ItemProps {
   delItem: SetItem;
   currency: string;
 }
-export default function ItemCard({ cart, item, addCart, currency }: ItemProps) {
+export default function ItemCard({
+  cart,
+  item,
+  addCart,
+  currency,
+  delItem
+}: ItemProps) {
   const itemKey = Object.keys(item)[0];
   const { name, price } = item[itemKey];
 
   const handleClick = () => {
-    if (addCart) {
-      addCart(item);
+    if (itemKey in cart.items) {
+      delItem(item);
+    } else {
+      if (addCart) {
+        addCart(item);
+      }
     }
   };
   const isChecked = () => itemKey in cart.items;

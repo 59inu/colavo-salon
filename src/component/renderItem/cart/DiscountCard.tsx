@@ -1,6 +1,6 @@
 import React from "react";
 import { SetDiscount, Discount, ChangeTarget, CartData } from "../../../types";
-import DeleteIBtn from "./DeleteIBtn";
+import DeleteIBtn from "../../buttons/DeleteIBtn";
 import DiscountTargetSelector from "./DiscountTargetSelector";
 import { priceFormatter } from "../../../function/contentFormat";
 

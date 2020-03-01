@@ -58,10 +58,8 @@ export default function Cart({
   );
 
   const getTotalPrice = () => {
-    return (totalItemsPrice - totalDiscounts).toLocaleString();
+    return totalItemsPrice - totalDiscounts;
   };
-
-  const getLocalePrice = (price: number | string) => price.toLocaleString();
 
   return (
     <section className="cart__container">
@@ -85,9 +83,9 @@ export default function Cart({
       <Divider />
       <TotalPrice
         currency={currency}
-        totalPrice={getLocalePrice(getTotalPrice())}
-        totalItemsPrice={getLocalePrice(totalItemsPrice)}
-        totalDiscountsPrice={getLocalePrice(totalDiscounts)}
+        totalPrice={getTotalPrice()}
+        totalItemsPrice={totalItemsPrice}
+        totalDiscountsPrice={totalDiscounts}
       />
     </section>
   );

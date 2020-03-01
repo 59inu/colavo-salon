@@ -2,9 +2,9 @@ import React from "react";
 import { priceFormatter } from "../function/contentFormat";
 interface IProps {
   currency: string;
-  totalPrice: string;
-  totalItemsPrice: string;
-  totalDiscountsPrice: string;
+  totalPrice: number;
+  totalItemsPrice: number;
+  totalDiscountsPrice: number;
 }
 export default function TotalPrice({
   currency,
@@ -12,7 +12,8 @@ export default function TotalPrice({
   totalItemsPrice,
   totalPrice
 }: IProps) {
-  const formatter = (price: string) => {
+  const formatter = (price: number) => {
+    console.log(price);
     return priceFormatter(currency, price);
   };
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import DeleteIBtn from "./DeleteIBtn";
+import DeleteIBtn from "../../buttons/DeleteIBtn";
 import { Item, SetItem, ChangeAmount } from "../../../types";
 import { InputNumber } from "antd";
 import { priceFormatter } from "../../../function/contentFormat";

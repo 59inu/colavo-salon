@@ -87,6 +87,7 @@ section:first-child {
 .selector__render-item-container {
   padding: 10px 5px;
   margin: 5px 20px 0 5px;
+  cursor: pointer;
 }
 .selector__render-item-sections {
   display: flex;
@@ -225,4 +226,13 @@ li {
 }
 .ant-divider.ant-divider-horizontal {
   margin: 10px;
+}
+.delete-btn-cross {
+  background-color: transparent;
+  border: none;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.delete-btn-cross:focus {
+  outline: none;
 }

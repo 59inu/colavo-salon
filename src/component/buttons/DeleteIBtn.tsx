@@ -1,5 +1,5 @@
 import React from "react";
-import { SetItem, SetDiscount, Discount, Item } from "../../../types";
+import { SetItem, SetDiscount, Discount, Item } from "../../types";
 import { CloseOutlined } from "@ant-design/icons";
 
 interface IProps {
@@ -12,7 +12,7 @@ export default function DeleteBtn(props: IProps) {
   const { item, discount, delItem, delDiscount } = props;
   return (
     <button
-      style={{ backgroundColor: "transparent", border: "none" }}
+      className="delete-btn-cross"
       onClick={() => {
         if (item && delItem) {
           delItem(item);
