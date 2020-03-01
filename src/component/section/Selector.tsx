@@ -38,7 +38,7 @@ class Selector extends React.Component<IProps, IState> {
   render() {
     const { mode } = this.state;
     const { changeMode } = this;
-    const { items, discounts } = this.props.data;
+    const { items, discounts, currency_code } = this.props.data;
     const { cart, delItem, delDiscount, setCart } = this.props;
     return (
       <section>
@@ -49,6 +49,7 @@ class Selector extends React.Component<IProps, IState> {
             cart={cart}
             setCart={setCart}
             delItem={delItem}
+            currency={currency_code}
           />
         ) : (
           <DiscountList

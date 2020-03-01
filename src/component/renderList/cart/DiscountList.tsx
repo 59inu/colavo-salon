@@ -7,13 +7,15 @@ interface IProps {
   setCart: SetCart;
   cart: CartData;
   delDiscount: SetDiscount;
+  currency: string;
 }
 
 export default function ItemList({
   discounts,
   setCart,
   cart,
-  delDiscount
+  delDiscount,
+  currency
 }: IProps) {
   const changeTarget = (targets: Array<string>, discount: Discount) => {
     const discountKey = Object.keys(discount)[0];
@@ -36,6 +38,7 @@ export default function ItemList({
           discount={discount}
           delCart={delDiscount}
           changeTarget={changeTarget}
+          currency={currency}
         />
       ))}
     </div>

@@ -2,19 +2,22 @@ import React from "react";
 import { SetDiscount, Discount, ChangeTarget, CartData } from "../../../types";
 import DeleteIBtn from "./DeleteIBtn";
 import DiscountTargetSelector from "./DiscountTargetSelector";
+import { priceFormatter } from "../../../function/contentFormat";
 
 interface IProps {
   discount: Discount;
   delCart: SetDiscount;
   changeTarget: ChangeTarget;
   cart: CartData;
+  currency: string;
 }
 
 export default function DiscountCard({
   discount,
   delCart,
   changeTarget,
-  cart
+  cart,
+  currency
 }: IProps) {
   const [discountKey, discountData] = [
     Object.keys(discount)[0],
@@ -34,8 +37,10 @@ export default function DiscountCard({
       },
       0
     );
-    const discountPrice = Math.floor(TargetTotalPrice * rate).toLocaleString();
-    return TargetTotalPrice ? `- ₩ ${discountPrice}` : null;
+    const discountPrice = Math.floor(TargetTotalPrice * rate);
+    return TargetTotalPrice
+      ? `- ${priceFormatter(currency, discountPrice)}`
+      : null;
   };
   const discountPercent = `${Math.floor(rate * 100)} %`;
   return (

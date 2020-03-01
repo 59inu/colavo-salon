@@ -7,8 +7,15 @@ interface IProps {
   setCart: SetCart;
   cart: CartData;
   delItem: SetItem;
+  currency: string;
 }
-export default function ItemList({ items, setCart, cart, delItem }: IProps) {
+export default function ItemList({
+  items,
+  setCart,
+  cart,
+  delItem,
+  currency
+}: IProps) {
   const changeAmount = (val: number | undefined, item: Item) => {
     const key = Object.keys(item)[0];
     const newItems = { ...cart.items };
@@ -27,6 +34,7 @@ export default function ItemList({ items, setCart, cart, delItem }: IProps) {
           item={item}
           delCart={delItem}
           changeAmount={changeAmount}
+          currency={currency}
         />
       ))}
     </div>

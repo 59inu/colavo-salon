@@ -6,12 +6,19 @@ import { CartData, SetItem, SetDiscount } from "../../types/index";
 import { Divider } from "antd";
 
 interface Iprops {
+  currency: string;
   cart: CartData;
   setCart: (newCart: CartData) => void;
   delItem: SetItem;
   delDiscount: SetDiscount;
 }
-export default function Cart({ cart, setCart, delItem, delDiscount }: Iprops) {
+export default function Cart({
+  cart,
+  setCart,
+  delItem,
+  delDiscount,
+  currency
+}: Iprops) {
   const { items, discounts } = cart;
 
   const totalItemsPrice = Object.keys(items).reduce(
@@ -60,16 +67,24 @@ export default function Cart({ cart, setCart, delItem, delDiscount }: Iprops) {
     <section className="cart__container">
       BILL
       <Divider />
-      <ItemList items={items} setCart={setCart} cart={cart} delItem={delItem} />
+      <ItemList
+        items={items}
+        setCart={setCart}
+        cart={cart}
+        delItem={delItem}
+        currency={currency}
+      />
       <Divider />
       <DiscountList
         discounts={discounts}
         setCart={setCart}
         cart={cart}
         delDiscount={delDiscount}
+        currency={currency}
       />
       <Divider />
       <TotalPrice
+        currency={currency}
         totalPrice={getLocalePrice(getTotalPrice())}
         totalItemsPrice={getLocalePrice(totalItemsPrice)}
         totalDiscountsPrice={getLocalePrice(totalDiscounts)}

@@ -2,20 +2,32 @@ import React from "react";
 import DeleteIBtn from "./DeleteIBtn";
 import { Item, SetItem, ChangeAmount } from "../../../types";
 import { InputNumber } from "antd";
+import { priceFormatter } from "../../../function/contentFormat";
 
 interface IProps {
   item: Item;
   delCart: SetItem;
   changeAmount: ChangeAmount;
+  currency: string;
 }
 
-export default function ItemCart({ item, delCart, changeAmount }: IProps) {
+export default function ItemCart({
+  item,
+  delCart,
+  changeAmount,
+  currency
+}: IProps) {
   const key = Object.keys(item)[0];
   const { price, name, count } = item[key];
-  const itemPrice = price.toLocaleString();
-  const totalPrice = (price * count).toLocaleString();
+  const itemPrice = price;
+  const totalPrice = price * count;
+
   const handelonChange = (value: number | undefined) => {
     changeAmount(value, item);
+  };
+
+  const formatter = (price: number) => {
+    return priceFormatter(currency, price);
   };
   return (
     <li>
@@ -23,9 +35,9 @@ export default function ItemCart({ item, delCart, changeAmount }: IProps) {
         <div className="cart-discount-card__title">
           <div>
             <div>{name}</div>
-            <div>(₩ {itemPrice})</div>
+            <div>({formatter(itemPrice)})</div>
           </div>
-          <div>₩ {totalPrice}</div>
+          <div>{formatter(totalPrice)}</div>
         </div>
         <div>
           <InputNumber

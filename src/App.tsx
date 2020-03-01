@@ -108,6 +108,7 @@ class App extends React.Component<{}, IState> {
             delDiscount={delDiscount}
           />
           <Cart
+            currency={data.currency_code}
             cart={cart}
             setCart={setCart}
             delItem={delItem}
