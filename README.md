@@ -8,7 +8,7 @@ A simple CRM application for beauty salons.
 
 ---
 
-Install the dependencies.
+Install dependencies.
 
 ```sh
 $ npm install
