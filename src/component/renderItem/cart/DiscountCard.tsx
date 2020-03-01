@@ -42,7 +42,9 @@ export default function DiscountCard({
       ? `- ${priceFormatter(currency, discountPrice)}`
       : null;
   };
+
   const discountPercent = `${Math.floor(rate * 100)} %`;
+
   return (
     <li>
       <div className="cart-discount-card__contianer">
@@ -50,18 +52,21 @@ export default function DiscountCard({
           <div>
             <div>{`${name} ${discountPercent}`}</div>
             <div>{getDiscountPrice()}</div>
+            <DiscountTargetSelector
+              key={discountKey}
+              changeTarget={changeTarget}
+              targetOps={cart.items}
+              discount={discount}
+            />
           </div>
           <div className="cart__discount-card__del-btn">
             <DeleteIBtn discount={discount} delDiscount={delCart} />
           </div>
         </div>
-        <div className="cart__discount-card__target-selector">
-          <DiscountTargetSelector
-            key={discountKey}
-            handleChange={changeTarget}
-            targets={cart.items}
-            discount={discount}
-          />
+        <div className="cart__discount-card__selected-targets">
+          {Number(target?.length) > 0
+            ? target?.map(key => <div>{cart.items[key].name}</div>)
+            : "일괄 적용"}
         </div>
       </div>
     </li>

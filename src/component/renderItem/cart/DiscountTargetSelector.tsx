@@ -1,44 +1,84 @@
-import React, { useEffect, ReactElement, useState } from "react";
-import { Select } from "antd";
+import React, { useEffect, useState } from "react";
+import CheckIcon from "../../buttons/CheckIcon";
 import { ChangeTarget, Discount, Item } from "../../../types";
-const { Option } = Select;
-
+import Modal from "./Modal";
+interface TargetState {
+  [index: string]: boolean;
+}
 interface IProps {
-  targets: Item;
-  handleChange: ChangeTarget;
+  targetOps: Item;
+  changeTarget: ChangeTarget;
   discount: Discount;
 }
-export default function({ targets, handleChange, discount }: IProps) {
-  const targetsKeys = Object.keys(targets);
+export default function DiscountTargetSelector({
+  targetOps,
+  changeTarget,
+  discount
+}: IProps) {
+  const targetsOpsKeys = Object.keys(targetOps);
   const discountKey = Object.keys(discount)[0];
-  const [discountTargets, setTargets] = useState<Array<ReactElement>>([]);
+  const discountData = Object.values(discount)[0];
+  const [targets, setTargets] = useState<TargetState>({});
 
-  const updateTargets = () => {
-    const newTargets: Array<ReactElement> = [];
-    for (let i = 0; i < targetsKeys.length; i++) {
-      const itemKey = targetsKeys[i];
-      const item = targets[itemKey];
-      const [itemName, itemCount] = [item.name, item.count];
-      newTargets.push(
-        <Option key={itemKey}>{`${itemName} * ${itemCount}`}</Option>
+  useEffect(() => {
+    const newTargets: TargetState = {};
+    targetsOpsKeys.forEach(key => {
+      const isSelected = !discountData.target?.every(
+        selected => selected !== key
       );
-    }
+      newTargets[key] = isSelected;
+    });
+    setTargets(newTargets);
+  }, []);
+
+  const [modalOpen, setModal] = useState(false);
+  const switchModal = () => {
+    setModal(!modalOpen);
+  };
+  const onClickTargetOps = (targetKey: string) => {
+    const isSelected = targets[targetKey];
+    const newTargets = { ...targets, [targetKey]: !isSelected };
     setTargets(newTargets);
   };
-  useEffect(updateTargets, []);
-  useEffect(updateTargets, [targets]);
+  const modalChildrenOptions = () => {
+    const targetOpsArr = targetsOpsKeys.map(key => targetOps[key]);
+    return targetOpsArr.map((item, i) => {
+      const targetKey = targetsOpsKeys[i];
+      const isSelected = targets[targetKey];
+      const className = isSelected
+        ? "select-target-option unClicked"
+        : "select-target-option clicked";
+
+      return (
+        <div>
+          <div>
+            {item.name} * {item.count}
+          </div>
+          <div
+            onClick={() => onClickTargetOps(targetKey)}
+            className={className}
+          >
+            <CheckIcon checked={isSelected ? isSelected : false} />
+          </div>
+        </div>
+      );
+    });
+  };
+  const onClose = () => {
+    const targetKeys = Object.keys(targets).filter(key => targets[key]);
+    changeTarget(targetKeys, discount);
+    setModal(false);
+  };
 
   return (
-    <Select
-      key={discountKey}
-      mode="multiple"
-      style={{ width: "100%" }}
-      placeholder={"일괄 적용"}
-      onChange={(itemKeys: Array<string>) => {
-        handleChange(itemKeys, discount);
-      }}
-    >
-      {discountTargets}
-    </Select>
+    <div className="cart__discount-card__target-selector">
+      <button onClick={switchModal}>수정</button>
+      <Modal
+        title={discount[discountKey].name}
+        isOpen={modalOpen}
+        onClose={onClose}
+        children={modalChildrenOptions()}
+      />
+    </div>
   );
 }
