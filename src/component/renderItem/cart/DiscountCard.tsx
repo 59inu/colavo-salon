@@ -65,7 +65,7 @@ export default function DiscountCard({
         </div>
         <div className="cart__discount-card__selected-targets">
           {Number(target?.length) > 0
-            ? target?.map(key => <div>{cart.items[key].name}</div>)
+            ? target?.map((key, i) => <div key={i}>{cart.items[key].name}</div>)
             : "일괄 적용"}
         </div>
       </div>

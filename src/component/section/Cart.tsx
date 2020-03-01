@@ -42,8 +42,6 @@ export default function Cart({
         } else {
           //specific targets
           const targetPrices = target.reduce((sum: number, itemKey: string) => {
-            console.log(cart, cart.items);
-
             const currentTargetPrice =
               cart.items[itemKey].price * cart.items[itemKey].count;
             return sum + currentTargetPrice;

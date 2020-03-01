@@ -50,7 +50,7 @@ export default function DiscountTargetSelector({
         : "select-target-option clicked";
 
       return (
-        <div>
+        <div key={i}>
           <div>
             {item.name} * {item.count}
           </div>
@@ -74,6 +74,7 @@ export default function DiscountTargetSelector({
     <div className="cart__discount-card__target-selector">
       <button onClick={switchModal}>수정</button>
       <Modal
+        key={discountKey}
         title={discount[discountKey].name}
         isOpen={modalOpen}
         onClose={onClose}
