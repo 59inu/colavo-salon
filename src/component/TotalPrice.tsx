@@ -13,7 +13,6 @@ export default function TotalPrice({
   totalPrice
 }: IProps) {
   const formatter = (price: number) => {
-    console.log(price);
     return priceFormatter(currency, price);
   };
   return (

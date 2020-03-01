@@ -1,5 +1,4 @@
 export const priceFormatter = (currency: string, price: number | string) => {
-  console.log(price, Number(price));
   const priceNumber = Number(price);
   switch (currency) {
     case "KRW":
