@@ -51,7 +51,7 @@ export default function DiscountTargetSelector({
 
       return (
         <div key={i}>
-          <div>
+          <div className="target-selector-option">
             {item.name} * {item.count}
           </div>
           <div
